@@ -27,7 +27,7 @@ public class ProductController {
 
     private final ModelMapper modelMapper;
 
-    @Operation(summary = "Get all products from database")
+    @Operation(summary = "Get all products from database. For testing purpose")
     @GetMapping
     public ProductResponse getAllItems() {
         List<Product> products = productService.getAll();

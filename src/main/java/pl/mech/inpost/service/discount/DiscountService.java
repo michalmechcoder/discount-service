@@ -4,6 +4,7 @@ import jakarta.annotation.Nullable;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pl.mech.inpost.config.DiscountProperties;
 import pl.mech.inpost.domain.Product;
@@ -16,6 +17,7 @@ import java.util.UUID;
 import static java.lang.String.format;
 import static java.util.Optional.ofNullable;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class DiscountService {
@@ -34,6 +36,8 @@ public class DiscountService {
 
         BigDecimal priceBeforeDiscount = product.getPrice()
                 .multiply(BigDecimal.valueOf(itemsCount));
+
+        log.info("Calculating discount for product id: {} using policy: {}", productId, discountProperties.getPolicy());
 
         BigDecimal discount = discountStrategyFactory
                 .getDiscountStrategy(discountProperties.getPolicy())

@@ -1,6 +1,7 @@
 package pl.mech.inpost.service.discount.strategy;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import pl.mech.inpost.config.DiscountProperties;
 import pl.mech.inpost.domain.DiscountType;
@@ -8,6 +9,7 @@ import pl.mech.inpost.domain.DiscountType;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class PercentageDiscountStrategy implements DiscountStrategy {
@@ -33,8 +35,12 @@ public class PercentageDiscountStrategy implements DiscountStrategy {
             }
         }
 
-        return priceBeforeDiscount
+        discount = priceBeforeDiscount
                 .multiply(discount)
                 .setScale(2, RoundingMode.FLOOR);
+
+        log.info("Discount (based on PERCENTAGE) value: {}", discount);
+
+        return discount;
     }
 }

@@ -1,5 +1,6 @@
 package pl.mech.inpost.config;
 
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +10,6 @@ import org.springframework.validation.annotation.Validated;
 import pl.mech.inpost.domain.DiscountType;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.List;
 
 @Data
@@ -30,7 +30,9 @@ public class DiscountProperties {
     @NotNull
     private DiscountType policy;
 
-    private List<PolicyStep> amountPolicySteps = Collections.emptyList();
+    @NotNull
+    private List<PolicyStep> amountPolicySteps;
 
-    private List<PolicyStep> percentagePolicySteps = Collections.emptyList();
+    @NotNull
+    private List<PolicyStep> percentagePolicySteps;
 }

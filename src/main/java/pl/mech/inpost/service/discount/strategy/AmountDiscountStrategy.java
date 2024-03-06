@@ -1,12 +1,15 @@
 package pl.mech.inpost.service.discount.strategy;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pl.mech.inpost.config.DiscountProperties;
 import pl.mech.inpost.domain.DiscountType;
 
 import java.math.BigDecimal;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class AmountDiscountStrategy implements DiscountStrategy {
@@ -30,6 +33,8 @@ public class AmountDiscountStrategy implements DiscountStrategy {
                 discount = policyStep.getValue();
             }
         }
+
+        log.info("Discount (based on AMOUNT) value: {}", discount);
 
         return discount;
     }

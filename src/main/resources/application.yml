@@ -14,7 +14,7 @@ spring:
 discount:
   policy: AMOUNT #PERCENTAGE, AMOUNT
 
-  amount-policy:
+  amount-policy-steps:
     - items: 10
       value: 2
     - items: 50
@@ -22,7 +22,7 @@ discount:
     - items: 100
       value: 30
 
-  percentage-policy:
+  percentage-policy-steps:
     - items: 10
       value: 0.03
     - items: 50
