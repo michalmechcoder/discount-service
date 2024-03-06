@@ -26,7 +26,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = DiscountServiceApplication.class)
-class DiscountServiceTest {
+class DiscountServiceIT {
 
     @MockBean
     private DiscountProperties discountProperties;
