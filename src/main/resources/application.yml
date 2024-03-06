@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:discount
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    defer-datasource-initialization: true
+    open-in-view: false
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console.enabled: true
+
+discount:
+  policy: PERCENTAGE #PERCENTAGE, AMOUNT
+
+  amount-policy:
+    - items: 10
+      value: 2
+    - items: 50
+      value: 10
+    - items: 100
+      value: 30
+
+  percentage-policy:
+    - items: 10
+      value: 0.03
+    - items: 50
+      value: 0.05
+    - items: 100
+      value: 0.10
