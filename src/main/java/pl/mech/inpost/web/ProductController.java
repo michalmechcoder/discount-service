@@ -1,5 +1,6 @@
 package pl.mech.inpost.web;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -26,6 +27,7 @@ public class ProductController {
 
     private final ModelMapper modelMapper;
 
+    @Operation(summary = "Get all products from database")
     @GetMapping
     public ProductResponse getAllItems() {
         List<Product> products = productService.getAll();
@@ -35,8 +37,12 @@ public class ProductController {
         return new ProductResponse(responseProducts);
     }
 
+    @Operation(summary = "Calculating a given product's price based on the number of products ordered")
     @GetMapping("{productId}/price")
-    public DiscountResponse getProductPrice(@PathVariable UUID productId, @RequestParam(required = false) @Min(1) Integer itemsCount) {
+    public DiscountResponse getProductPrice(
+            @PathVariable UUID productId,
+            @RequestParam(required = false) @Min(1) Integer itemsCount
+    ) {
         BigDecimal priceWithDiscount = discountService.calculateProductPrice(productId, itemsCount);
 
         return new DiscountResponse(priceWithDiscount);

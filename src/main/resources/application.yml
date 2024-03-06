@@ -12,7 +12,7 @@ spring:
     console.enabled: true
 
 discount:
-  policy: PERCENTAGE #PERCENTAGE, AMOUNT
+  policy: AMOUNT #PERCENTAGE, AMOUNT
 
   amount-policy:
     - items: 10
